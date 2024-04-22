@@ -26,7 +26,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<List<CargoModel>> GetAllAsync()
         {
-            var response = await _httpClient.GetAsync($"{BaseUrl}/Cargo");
+            var response = await _httpClient.GetAsync($"{BaseUrl}/Cargo/GetAll");
             response.EnsureSuccessStatusCode(); 
 
             return await response.Content.ReadFromJsonAsync<List<CargoModel>>();
