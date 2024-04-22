@@ -1,5 +1,6 @@
 ﻿using Controle_de_Transporte_FrontEnd.Models;
 using Controle_de_Transporte_FrontEnd.Repository.Interface;
+using Controle_de_Transporte_FrontEnd.Rotas;
 
 namespace Controle_de_Transporte_FrontEnd.Repository
 {
@@ -18,7 +19,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<CargoModel> GetByIdAsync(int id)
         {
-            var response = await _httpClient.GetAsync($"{BaseUrl}/Cargo/{id}");
+            var response = await _httpClient.GetAsync($"{BaseUrl}/{RouteConst.GetById.Replace("{id}", id.ToString())}");
             response.EnsureSuccessStatusCode();
 
             return await response.Content.ReadFromJsonAsync<CargoModel>();
@@ -26,7 +27,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<List<CargoModel>> GetAllAsync()
         {
-            var response = await _httpClient.GetAsync($"{BaseUrl}/Cargo/GetAll");
+            var response = await _httpClient.GetAsync($"{BaseUrl}/{RouteConst.GetAll}");
             response.EnsureSuccessStatusCode(); 
 
             return await response.Content.ReadFromJsonAsync<List<CargoModel>>();
@@ -34,7 +35,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<CargoModel> CreateAsync(CargoModel cargo)
         {
-            var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}/cargo", cargo);
+            var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}/Cargo/Create", cargo);
             response.EnsureSuccessStatusCode(); 
 
             return await response.Content.ReadFromJsonAsync<CargoModel>();
@@ -42,7 +43,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<CargoModel> UpdateAsync(CargoModel cargo)
         {
-            var response = await _httpClient.PutAsJsonAsync($"{BaseUrl}/cargo/{cargo.Id}", cargo);
+            var response = await _httpClient.PutAsJsonAsync($"{BaseUrl}/Cargo/Update/{cargo.Id}", cargo);
             response.EnsureSuccessStatusCode(); 
 
             return await response.Content.ReadFromJsonAsync<CargoModel>();
@@ -50,7 +51,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<bool> DeleteByIdAsync(int id)
         {
-            var response = await _httpClient.DeleteAsync($"{BaseUrl}/cargo/{id}");
+            var response = await _httpClient.DeleteAsync($"{BaseUrl}/Cargo/Delete/{id}");
             response.EnsureSuccessStatusCode(); 
 
             return response.IsSuccessStatusCode;
