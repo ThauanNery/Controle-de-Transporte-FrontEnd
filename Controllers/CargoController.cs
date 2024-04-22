@@ -108,27 +108,27 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
             return View(cargo);
         }
 
-        public async Task<IActionResult> Delete(int id)
-        {
-            try
-            {
-                var cargo = await _cargoService.GetByIdAsync(id);
-                if (cargo == null)
-                {
-                    return NotFound();
-                }
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    try
+        //    {
+        //        var cargo = await _cargoService.GetByIdAsync(id);
+        //        if (cargo == null)
+        //        {
+        //            return NotFound();
+        //        }
 
-                return View(cargo);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
-            }
-        }
+        //        return View("Index");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+        //    }
+        //}
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {

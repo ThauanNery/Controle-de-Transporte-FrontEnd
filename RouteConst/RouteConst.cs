@@ -2,7 +2,7 @@
 {
     public class RouteConst
     {
-     
+      
         /*Cargo*/
         public const string GetAll = "Cargo/GetAll";
         public const string GetById = "Cargo/GetById/{id}";
