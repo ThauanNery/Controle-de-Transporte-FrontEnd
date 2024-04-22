@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controle de Transporte FrontEnd", "Controle de Transporte FrontEnd.csproj", "{D12960E9-504C-4BA9-8BB1-AEFD3D6E3DE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D12960E9-504C-4BA9-8BB1-AEFD3D6E3DE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D12960E9-504C-4BA9-8BB1-AEFD3D6E3DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D12960E9-504C-4BA9-8BB1-AEFD3D6E3DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D12960E9-504C-4BA9-8BB1-AEFD3D6E3DE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74E54866-1291-4FA9-AA2F-4F87342AC5E5}
+	EndGlobalSection
+EndGlobal

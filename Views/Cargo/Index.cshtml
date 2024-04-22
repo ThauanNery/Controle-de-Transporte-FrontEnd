@@ -1,0 +1,85 @@
+﻿@model List<CargoModel>
+@{
+    ViewData["Title"] = "Lista de Cargos";
+}
+<div class="text-center">
+
+
+    <br />
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+    <h1 class="display-4 text-start">Cargo</h1>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-primary" role="button" asp-controller="Cargo" asp-action="Create">Adicionar Cargo</a>
+    </div>
+    <br />
+
+    <table id="tabela" class="table">
+        <thead class="table-dark">
+
+            <tr>
+                <th class="text-center" scope="col">Nome</th>              
+                <th class="text-center" scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (CargoModel cargo in Model)
+                {
+                    <tr>
+                        <input type="hidden" @cargo.Id />
+                        <td>@cargo.NomeCargo</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-warning" asp-route-id="@cargo.Id" asp-controller="Cargo" asp-action="Edit">Editar</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@cargo.Id" data-toggle="modal" data-target="#myModal_@cargo.Id">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <div class="modal" id="myModal_@cargo.Id">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Cabeçalho do Modal -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Excluir Cargo</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Corpo do Modal -->
+                                <div class="modal-body">
+                                    <p>Deseja realmente excluir o contato de @cargo.NomeCargo ?</p>
+                                </div>
+
+                                <!-- Rodapé do Modal -->
+                                <div class="modal-footer">
+                                    <!-- Botão de cancelar -->
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <!-- Botão de confirmar -->
+                                    <a role="button" class="btn btn-danger" id="confirmDelete_@cargo.Id" asp-route-id="@cargo.Id" asp-controller="Cargo" asp-action="Delete">Confirma</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
