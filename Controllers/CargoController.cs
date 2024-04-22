@@ -126,8 +126,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
         //    }
         //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+       
         public async Task<IActionResult> Delete(int id)
         {
             try
