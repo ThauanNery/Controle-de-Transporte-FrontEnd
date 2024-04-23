@@ -1,0 +1,24 @@
+﻿@model InstituicaoModel
+@{
+    ViewData["Title"] = "Adicionar Instituição";
+}
+<div class="">
+
+    <h1 class="display-4">Cadastrar Instituição</h1>
+
+    <form asp-controller="Instituicao" asp-action="Create" method="post">
+
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input for="uppercase" type="text" asp-for="NomeInstituicao" class="form-control">
+            @Html.ValidationMessageFor(x => x.NomeInstituicao)
+            <label for="nome">CNPJ</label>
+            <input for="uppercase" id="cnpjInput" name="cnpj" type="text" asp-for="CNPJ" class="form-control">
+            @Html.ValidationMessageFor(x => x.CNPJ)
+           
+            <br />
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <a class="btn btn-secondary" asp-controller="Instituicao" asp-action="Index" role="button"> Voltar</a>
+    </form>
+
+</div>

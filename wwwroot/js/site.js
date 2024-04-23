@@ -8,6 +8,10 @@ $('.btn-close').click(function () {
     $('.alert').hide('hide');
 })
 
+    $(document).ready(function () {
+        $('#cnpjInput').mask('00.000.000/0000-00', { reverse: true });
+    });
+
 let table = new DataTable('#tabela', {
     "ordering": true,
     "paging": true,

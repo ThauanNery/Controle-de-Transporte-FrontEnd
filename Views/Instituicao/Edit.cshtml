@@ -1,4 +1,4 @@
-﻿@model CargoModel
+﻿@model InstituicaoModel
 @{
     ViewData["Title"] = "Editar Cargo";
 }
@@ -20,20 +20,23 @@
     }
 
     <br />
-    <h1 class="display-4">Editar Cargo</h1>
+    <h1 class="display-4">Editar Instituição</h1>
 
-    <form asp-controller="Cargo" asp-action="Edit" method="post">
+    <form asp-controller="Instituicao" asp-action="Edit" method="post">
 
         <input type="hidden" asp-for="Id" />
         <div class="form-group">
             <label for="nome">Nome</label>
-            <input type="text" asp-for="NomeCargo" class="form-control">
-            @Html.ValidationMessageFor(x => x.NomeCargo)
+            <input for="uppercase" type="text" asp-for="NomeInstituicao" class="form-control">
+            @Html.ValidationMessageFor(x => x.NomeInstituicao)
+            <label for="nome">CNPJ</label>
+            <input for="uppercase" id="cnpjInput" name="cnpj" type="text" asp-for="CNPJ" class="form-control">
+            @Html.ValidationMessageFor(x => x.CNPJ)
         </div>
        
         <br />
         <button type="submit" class="btn btn-primary">Alterar</button>
-        <a class="btn btn-secondary" asp-controller="Cargo" asp-action="Index" role="button"> Voltar</a>
+        <a class="btn btn-secondary" asp-controller="Instituicao" asp-action="Index" role="button"> Voltar</a>
     </form>
 
 </div>

@@ -5,19 +5,19 @@ using System.Net;
 
 namespace Controle_de_Transporte_FrontEnd.Controllers
 {
-    public class CargoController : Controller
+    public class InstituicaoController : Controller
     {
-        private readonly ICargoService _cargoService;
-        public CargoController(ICargoService cargoService)
+        private readonly IInstituicaoService _service;
+        public InstituicaoController(IInstituicaoService service)
         {
-            _cargoService = cargoService;
+            _service = service;
         }
 
         public async Task<IActionResult> Index()
         {
             try
             {
-                var cargos = await _cargoService.GetAllAsync();
+                var cargos = await _service.GetAllAsync();
                 return View(cargos);
             }
             catch (Exception ex)
@@ -30,7 +30,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
         {
             try
             {
-                var cargo = await _cargoService.GetByIdAsync(id);
+                var cargo = await _service.GetByIdAsync(id);
                 if (cargo == null)
                 {
                     return NotFound();
@@ -50,13 +50,13 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NomeCargo")] CargoModel cargo)
+        public async Task<IActionResult> Create(InstituicaoModel instituicao)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var retorno = await _cargoService.AddAsync(cargo);
+                    var retorno = await _service.AddAsync(instituicao);
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
@@ -64,14 +64,14 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                     return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
                 }
             }
-            return View(cargo);
+            return View(instituicao);
         }
 
         public async Task<IActionResult> Edit(int id)
         {
             try
             {
-                var cargo = await _cargoService.GetByIdAsync(id);
+                var cargo = await _service.GetByIdAsync(id);
                 if (cargo == null)
                 {
                     return NotFound();
@@ -86,9 +86,9 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NomeCargo")] CargoModel cargo)
+        public async Task<IActionResult> Edit(int id, InstituicaoModel instituicao)
         {
-            if (id != cargo.Id)
+            if (id != instituicao.Id)
             {
                 return NotFound();
             }
@@ -97,7 +97,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
             {
                 try
                 {
-                    await _cargoService.UpdateAsync(cargo);
+                    await _service.UpdateAsync(instituicao);
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
@@ -105,14 +105,14 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                     return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
                 }
             }
-            return View(cargo);
-        }     
-       
+            return View(instituicao);
+        }
+
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                await _cargoService.DeleteAsync(id);
+                await _service.DeleteAsync(id);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

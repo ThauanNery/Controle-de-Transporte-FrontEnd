@@ -19,7 +19,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<CargoModel> GetByIdAsync(int id)
         {
-            var response = await _httpClient.GetAsync($"{BaseUrl}/{RouteConst.GetById.Replace("{id}", id.ToString())}");
+            var response = await _httpClient.GetAsync($"{BaseUrl}/{RouteConst.CargoGetById.Replace("{id}", id.ToString())}");
             response.EnsureSuccessStatusCode();
 
             return await response.Content.ReadFromJsonAsync<CargoModel>();
@@ -27,7 +27,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<List<CargoModel>> GetAllAsync()
         {
-            var response = await _httpClient.GetAsync($"{BaseUrl}/{RouteConst.GetAll}");
+            var response = await _httpClient.GetAsync($"{BaseUrl}/{RouteConst.CargoGetAll}");
             response.EnsureSuccessStatusCode(); 
 
             return await response.Content.ReadFromJsonAsync<List<CargoModel>>();
@@ -35,7 +35,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<CargoModel> CreateAsync(CargoModel cargo)
         {
-            var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}/{RouteConst.Create}", cargo);
+            var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}/{RouteConst.CargoCreate}", cargo);
             response.EnsureSuccessStatusCode(); 
 
             return await response.Content.ReadFromJsonAsync<CargoModel>();
@@ -43,7 +43,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<CargoModel> UpdateAsync(CargoModel cargo)
         {
-            var response = await _httpClient.PutAsJsonAsync($"{BaseUrl}/{RouteConst.Update.Replace("{id}", cargo.Id.ToString())}", cargo);
+            var response = await _httpClient.PutAsJsonAsync($"{BaseUrl}/{RouteConst.CargoUpdate.Replace("{id}", cargo.Id.ToString())}", cargo);
             response.EnsureSuccessStatusCode(); 
 
             return await response.Content.ReadFromJsonAsync<CargoModel>();
@@ -51,7 +51,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<bool> DeleteByIdAsync(int id)
         {
-            var response = await _httpClient.DeleteAsync($"{BaseUrl}/{RouteConst.Delete.Replace("{id}", id.ToString())}");
+            var response = await _httpClient.DeleteAsync($"{BaseUrl}/{RouteConst.CargoDelete.Replace("{id}", id.ToString())}");
             response.EnsureSuccessStatusCode(); 
 
             return response.IsSuccessStatusCode;
