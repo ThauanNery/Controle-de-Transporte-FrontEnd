@@ -63,20 +63,15 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
             {
                 try
                 {
-                    // Supondo que você tenha o ID da instituição disponível no objeto departamento
-                    int instituicaoId = departamento.InstituicaoId;
-
-                    // Obtenha a instituição pelo ID
+                    
+                    int instituicaoId = departamento.InstituicaoId;                   
                     InstituicaoModel instituicao = await ObterInstituicaoPorId(instituicaoId);
-
-                    // Verifique se a instituição foi encontrada
+                  
                     if (instituicao != null)
                     {
-                        // Atribua o ID da instituição ao departamento
+                        
                         departamento.Instituicao = instituicao;
-                        //departamento.InstituicaoId = instituicao.Id;
-
-                        // Adicione o departamento com a instituição correta
+                        
                         var retorno = await _service.AddAsync(departamento);
                         return RedirectToAction(nameof(Index));
                     }
@@ -99,8 +94,12 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+           
             try
             {
+                var instituicoes = await ObterInstituicao();
+                ViewBag.Instituicoes = new SelectList(instituicoes, "Id", "NomeInstituicao");
+
                 var departamento = await _service.GetByIdAsync(id);
                 if (departamento == null)
                 {

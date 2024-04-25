@@ -1,0 +1,43 @@
+﻿@model DepartamentoModel
+@{
+    ViewData["Title"] = "Editar Departamento";
+}
+<div class="">
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            A simple danger alert—check it out!
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+    <h1 class="display-4">Editar Departamento</h1>
+
+    <form asp-controller="Departamento" asp-action="Edit" method="post">
+
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input for="uppercase" type="text" asp-for="NomeDepartamento" class="form-control">
+            @Html.ValidationMessageFor(x => x.NomeDepartamento)
+            <div class="form-group">
+                @Html.LabelFor(model => model.InstituicaoId, "Instituição", new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.InstituicaoId, ViewBag.Instituicoes as SelectList, "", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-primary">Alterar</button>
+        <a class="btn btn-secondary" asp-controller="Departamento" asp-action="Index" role="button"> Voltar</a>
+    </form>
+
+</div>
