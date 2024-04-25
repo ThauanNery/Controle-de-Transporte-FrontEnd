@@ -20,7 +20,7 @@ namespace Controle_de_Transporte_FrontEnd.Models
 
 
         [ForeignKey("MatriculaFuncionarioId")]
-        [JsonIgnore]
+       
         public virtual MatriculaFuncionarioModel? MatriculaFuncionarios { get; set; }
     }
 }

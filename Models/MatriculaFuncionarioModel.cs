@@ -16,7 +16,7 @@ namespace Controle_de_Transporte_FrontEnd.Models
         public int FuncionarioId { get; set; }
 
         [ForeignKey("FuncionarioId")]
-        [JsonIgnore]
+       
         public virtual FuncionariosModel? Funcionarios { get; set; }
     }
 }

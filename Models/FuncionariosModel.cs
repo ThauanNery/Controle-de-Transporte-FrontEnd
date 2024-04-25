@@ -15,11 +15,11 @@ namespace Controle_de_Transporte_FrontEnd.Models
         public int CargoId { get; set; }
 
         [ForeignKey("DepartamentoId")]
-        [JsonIgnore]
+       
         public virtual DepartamentoModel? Departamento { get; set; }
 
         [ForeignKey("CargoId")]
-        [JsonIgnore]
+       
         public virtual CargoModel? Cargo  { get; set; }
     }
 }

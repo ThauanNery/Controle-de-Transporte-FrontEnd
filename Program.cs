@@ -38,6 +38,8 @@ namespace Controle_de_Transporte_FrontEnd
             // Adicionar seu serviço
             builder.Services.AddTransient<ICargoRepository, CargoRepository>();
             builder.Services.AddTransient<ICargoService, CargoService>();
+            builder.Services.AddTransient<IDepartamentoRepository, DepartamentoRepository>();
+            builder.Services.AddTransient<IDepartamentoService, DepartamentoService>();
             builder.Services.AddTransient<IInstituicaoRepository, InstituicaoRepository>();
             builder.Services.AddTransient<IInstituicaoService, InstituicaoService>();
 

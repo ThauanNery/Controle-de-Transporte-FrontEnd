@@ -1,0 +1,26 @@
+﻿@model DepartamentoModel
+@{
+    ViewData["Title"] = "Adicionar Departamento";
+}
+<div class="">
+
+    <h1 class="display-4">Cadastrar Departamento</h1>
+
+    <form asp-controller="Departamento" asp-action="Create" method="post">
+
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input for="uppercase" type="text" asp-for="NomeDepartamento" class="form-control">
+            @Html.ValidationMessageFor(x => x.NomeDepartamento)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.InstituicaoId, "Instituição", new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.InstituicaoId, ViewBag.Instituicoes as SelectList, "Selecione...", new { @class = "form-control" })
+            </div>
+
+            <br />
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <a class="btn btn-secondary" asp-controller="Departamento" asp-action="Index" role="button"> Voltar</a>
+    </form>
+
+</div>

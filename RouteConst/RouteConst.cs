@@ -10,6 +10,13 @@
         public const string CargoUpdate = "Cargo/Update/{id}";
         public const string CargoDelete = "Cargo/Delete/{id}";
         
+        /*Departamento*/
+        public const string DepartamentoGetAll = "Departamento/GetAll";
+        public const string DepartamentoGetById = "Departamento/GetById/{id}";
+        public const string DepartamentoCreate = "Departamento/Create/{institucaoId}";
+        public const string DepartamentoUpdate = "Departamento/Update/{id}";
+        public const string DepartamentoDelete = "Departamento/Delete/{id}";
+        
         /*Instituição*/
         public const string InstituicaoGetAll = "Instituicao/GetAll";
         public const string InstituicaoGetById = "Instituicao/GetById/{id}";

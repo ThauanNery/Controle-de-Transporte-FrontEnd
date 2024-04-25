@@ -16,13 +16,13 @@ namespace Controle_de_Transporte_FrontEnd.Models
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
 
-        [JsonIgnore]
+       
         public virtual TipoDeTransporteModel? TipoDeTransporte { get; set; }
-        [JsonIgnore]
+       
         public virtual MatriculaFuncionarioModel? MatriculaFuncionario { get; set; }
-        [JsonIgnore]
+       
         public virtual MatriculaTransporteModel? MatriculaTransporte { get; set; }
-        [JsonIgnore]
+       
         public virtual ManutencaoModel? Manutencao { get; set; }
     }
 }

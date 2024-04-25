@@ -3,7 +3,7 @@ using Controle_de_Transporte_FrontEnd.Repository.Interface;
 using Controle_de_Transporte_FrontEnd.Service.Interface;
 using System.Net;
 
-namespace Controle_de_Transporte_FrontEnd.Repository
+namespace Controle_de_Transporte_FrontEnd.Service
 {
     public class InstituicaoService : IInstituicaoService
     {
