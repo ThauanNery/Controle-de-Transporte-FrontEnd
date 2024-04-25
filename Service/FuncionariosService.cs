@@ -1,21 +1,20 @@
 ﻿using Controle_de_Transporte_FrontEnd.Models;
-using Controle_de_Transporte_FrontEnd.Repository;
 using Controle_de_Transporte_FrontEnd.Repository.Interface;
 using Controle_de_Transporte_FrontEnd.Service.Interface;
 using System.Net;
 
 namespace Controle_de_Transporte_FrontEnd.Service
 {
-    public class DepartamentoService : IDepartamentoService
+    public class FuncionariosService : IFuncionariosService
     {
-        private readonly IDepartamentoRepository _repository;
+        private readonly IFuncionariosRepository _repository;
 
-        public DepartamentoService(IDepartamentoRepository repository)
+        public FuncionariosService(IFuncionariosRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<DepartamentoModel> GetByIdAsync(int id)
+        public async Task<FuncionariosModel> GetByIdAsync(int id)
         {
             var statusHttp = HttpStatusCode.NotFound;
             try
@@ -29,12 +28,12 @@ namespace Controle_de_Transporte_FrontEnd.Service
             }
             catch (Exception ex)
             {
-                string errorMessage = "Ocorreu um erro ao buscar um departamento por Id.";
+                string errorMessage = "Ocorreu um erro ao buscar um funcionario por Id.";
                 throw new Exception(errorMessage, ex);
             }
         }
 
-        public async Task<List<DepartamentoModel>> GetAllAsync()
+        public async Task<List<FuncionariosModel>> GetAllAsync()
         {
             try
             {
@@ -42,35 +41,35 @@ namespace Controle_de_Transporte_FrontEnd.Service
             }
             catch (Exception ex)
             {
-                string errorMessage = "Ocorreu um erro ao buscar Cargos.";
+                string errorMessage = "Ocorreu um erro ao buscar funcionarios.";
                 throw new Exception(errorMessage, ex);
             }
         }
 
-        public async Task<DepartamentoModel> AddAsync(DepartamentoModel departamento)
+        public async Task<FuncionariosModel> AddAsync(FuncionariosModel funcionarios)
         {
             try
             {
-                await _repository.CreateAsync(departamento);
-                return departamento;
+                await _repository.CreateAsync(funcionarios);
+                return funcionarios;
             }
             catch (Exception ex)
             {
-                string errorMessage = "Ocorreu um erro ao adicionar um departamento.";
+                string errorMessage = "Ocorreu um erro ao adicionar um funcionario.";
                 throw new Exception(errorMessage, ex);
             }
         }
 
-        public async Task<DepartamentoModel> UpdateAsync(DepartamentoModel departamento)
+        public async Task<FuncionariosModel> UpdateAsync(FuncionariosModel funcionarios)
         {
             try
             {
-                await _repository.UpdateAsync(departamento);
-                return departamento;
+                await _repository.UpdateAsync(funcionarios);
+                return funcionarios;
             }
             catch (Exception ex)
             {
-                string errorMessage = "Ocorreu um erro ao atualizar um departamento.";
+                string errorMessage = "Ocorreu um erro ao atualizar um funcionario.";
                 throw new Exception(errorMessage, ex);
             }
         }
@@ -84,7 +83,7 @@ namespace Controle_de_Transporte_FrontEnd.Service
             }
             catch (Exception ex)
             {
-                string errorMessage = "Ocorreu um erro ao apagar um departamento.";
+                string errorMessage = "Ocorreu um erro ao apagar um funcionarios.";
                 throw new Exception(errorMessage, ex);
             }
         }

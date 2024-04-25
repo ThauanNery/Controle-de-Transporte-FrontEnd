@@ -25,16 +25,20 @@
     <form asp-controller="Departamento" asp-action="Edit" method="post">
 
         <input type="hidden" asp-for="Id" />
-        <div class="form-group">
-            <label for="nome">Nome</label>
-            <input for="uppercase" type="text" asp-for="NomeDepartamento" class="form-control">
-            @Html.ValidationMessageFor(x => x.NomeDepartamento)
-            <div class="form-group">
-                @Html.LabelFor(model => model.InstituicaoId, "Instituição", new { @class = "control-label" })
-                @Html.DropDownListFor(model => model.InstituicaoId, ViewBag.Instituicoes as SelectList, "", new { @class = "form-control" })
-            </div>
-        </div>
 
+        <div class="container form-group">
+            <div class="row">
+                <div class="col-sm">
+                    <label for="nome">Nome</label>
+                    <input for="uppercase" type="text" asp-for="NomeDepartamento" class="form-control">
+                    @Html.ValidationMessageFor(x => x.NomeDepartamento)
+                </div>
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.InstituicaoId, "Instituição", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.InstituicaoId, ViewBag.Instituicoes as SelectList, "", new { @class = "form-control" })
+                </div>
+            </div>          
+        </div>
         <br />
         <button type="submit" class="btn btn-primary">Alterar</button>
         <a class="btn btn-secondary" asp-controller="Departamento" asp-action="Index" role="button"> Voltar</a>

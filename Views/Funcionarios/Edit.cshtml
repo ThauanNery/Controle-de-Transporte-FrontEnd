@@ -1,0 +1,53 @@
+﻿@model FuncionariosModel
+@{
+    ViewData["Title"] = "Editar Funcionario";
+}
+<div class="">
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            A simple danger alert—check it out!
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+    <h1 class="display-4">Editar Funcionarios</h1>
+
+    <form asp-controller="Funcionarios" asp-action="Edit" method="post">
+
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CargoId" />
+        <input type="hidden" asp-for="DepartamentoId" />
+
+        <div class="container form-group">
+            <div class="row">
+                <div class="col-sm">
+                    <label for="nome">Nome</label>
+                    <input for="uppercase" type="text" asp-for="NomeFuncionario" class="form-control">
+                    @Html.ValidationMessageFor(x => x.NomeFuncionario)
+                </div>
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.CargoId, "Cargo", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.CargoId, ViewBag.Cargos as SelectList, "", new { @class = "form-control" })
+                </div> 
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.DepartamentoId, "Departamento", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.DepartamentoId, ViewBag.Departamentos as SelectList, "", new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Alterar</button>
+        <a class="btn btn-secondary" asp-controller="Funcionarios" asp-action="Index" role="button"> Voltar</a>
+    </form>
+
+</div>

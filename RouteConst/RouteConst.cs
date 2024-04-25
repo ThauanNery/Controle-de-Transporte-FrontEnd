@@ -16,6 +16,13 @@
         public const string DepartamentoCreate = "Departamento/Create/{institucaoId}";
         public const string DepartamentoUpdate = "Departamento/Update/{id}";
         public const string DepartamentoDelete = "Departamento/Delete/{id}";
+
+        /*Funcionarios*/
+        public const string FuncionariosGetAll = "Funcionarios/GetAll";
+        public const string FuncionariosGetById = "Funcionarios/GetById/{id}";
+        public const string FuncionariosCreate = "Funcionarios/Create/{cargoId},{departamentoId}";
+        public const string FuncionariosUpdate = "Funcionarios/Update/{id}";
+        public const string FuncionariosDelete = "Funcionarios/Delete/{id}";
         
         /*Instituição*/
         public const string InstituicaoGetAll = "Instituicao/GetAll";
