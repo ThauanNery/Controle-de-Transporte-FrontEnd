@@ -6,6 +6,7 @@ namespace Controle_de_Transporte_FrontEnd.Models
 {
     public class UsuarioModel
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -16,11 +17,12 @@ namespace Controle_de_Transporte_FrontEnd.Models
         [Required]
         public string Senha { get; set; }
 
-        public int MatriculaFuncionarioId { get; set; }
+        public int FuncionarioId { get; set; }
 
 
-        [ForeignKey("MatriculaFuncionarioId")]
-       
-        public virtual MatriculaFuncionarioModel? MatriculaFuncionarios { get; set; }
+        [ForeignKey("FuncionarioId")]
+
+        public virtual FuncionariosModel? Funcionarios { get; set; }
     }
 }
+

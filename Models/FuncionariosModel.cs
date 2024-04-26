@@ -11,6 +11,8 @@ namespace Controle_de_Transporte_FrontEnd.Models
         public int Id { get; set; }
         [Required]
         public string NomeFuncionario { get; set; }
+        [Required]
+        public string Matricula { get; set; }
         public int DepartamentoId { get; set; }
         public int CargoId { get; set; }
 
