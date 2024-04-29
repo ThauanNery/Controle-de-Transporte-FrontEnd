@@ -28,8 +28,8 @@ namespace Controle_de_Transporte_FrontEnd.Service
             }
             catch (Exception ex)
             {
-                string errorMessage = "Ocorreu um erro ao buscar um Usuario por Login.";
-                throw new Exception(errorMessage, ex);
+                
+                throw new Exception();
             }
         }
 

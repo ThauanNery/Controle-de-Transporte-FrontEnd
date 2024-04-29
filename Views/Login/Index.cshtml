@@ -4,6 +4,14 @@
     ViewData["Title"] = "Login";
 }
 
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
 <form asp-controller="Login" asp-action="Entrar" method="post">
     <div class="container w-25 p-3 border border-light rounded">
         <div class="mb-3">
