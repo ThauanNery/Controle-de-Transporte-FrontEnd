@@ -19,10 +19,16 @@ namespace Controle_de_Transporte_FrontEnd.Models
 
         public int FuncionarioId { get; set; }
 
+        public bool SenhaValida(string senha)
+        {
+            return Senha == senha;
+        }
 
         [ForeignKey("FuncionarioId")]
 
         public virtual FuncionariosModel? Funcionarios { get; set; }
+
+
     }
 }
 

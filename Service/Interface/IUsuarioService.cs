@@ -4,6 +4,7 @@ namespace Controle_de_Transporte_FrontEnd.Service.Interface
 {
     public interface IUsuarioService
     {
+        Task<UsuarioModel> BuscarPorLogin(string login);
         Task<UsuarioModel> GetByIdAsync(int id);
         Task<List<UsuarioModel>> GetAllAsync();
         Task<UsuarioModel> AddAsync(UsuarioModel usuario);

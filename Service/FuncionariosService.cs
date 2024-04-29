@@ -69,7 +69,7 @@ namespace Controle_de_Transporte_FrontEnd.Service
             }
             catch (Exception ex)
             {
-                string errorMessage = "Ocorreu um erro ao atualizar um funcionario.";
+                string errorMessage = "Ocorreu um erro ao atualizar um funcionarios.";
                 throw new Exception(errorMessage, ex);
             }
         }

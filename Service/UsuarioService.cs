@@ -14,6 +14,25 @@ namespace Controle_de_Transporte_FrontEnd.Service
             _repository = repository;
         }
 
+        public async Task<UsuarioModel> BuscarPorLogin(string login)
+        {
+            var statusHttp = HttpStatusCode.NotFound;
+            try
+            {
+                var usuario = await _repository.BuscarPorLogin(login);
+                if (usuario != null)
+                {
+                    statusHttp = HttpStatusCode.OK;
+                }
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = "Ocorreu um erro ao buscar um Usuario por Login.";
+                throw new Exception(errorMessage, ex);
+            }
+        }
+
         public async Task<UsuarioModel> GetByIdAsync(int id)
         {
             var statusHttp = HttpStatusCode.NotFound;

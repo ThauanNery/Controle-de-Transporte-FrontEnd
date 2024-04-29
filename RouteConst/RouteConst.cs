@@ -32,6 +32,7 @@
         public const string InstituicaoDelete = "Instituicao/Delete/{id}"; 
         
         /*Usuarios*/
+        public const string BuscarPorLogin = "Usuario/BuscarPorLogin/{login}";
         public const string UsuarioGetAll = "Usuario/GetAll";
         public const string UsuarioGetById = "Usuario/GetById/{id}";
         public const string UsuarioCreate = "Usuario/Create/{funcionarioId}";

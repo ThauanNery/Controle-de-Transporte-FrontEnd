@@ -120,9 +120,9 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, FuncionariosModel funcionario)
+        public async Task<IActionResult> Edit(int id, FuncionariosModel funcionarios)
         {
-            if (id != funcionario.Id)
+            if (id != funcionarios.Id)
             {
                 return NotFound();
             }
@@ -131,7 +131,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
             {
                 try
                 {
-                    await _service.UpdateAsync(funcionario);
+                    await _service.UpdateAsync(funcionarios);
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
@@ -139,7 +139,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                     return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
                 }
             }
-            return View(funcionario);
+            return View(funcionarios);
         }
 
         public async Task<IActionResult> Delete(int id)

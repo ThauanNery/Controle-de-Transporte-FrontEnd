@@ -66,7 +66,7 @@ namespace Controle_de_Transporte_FrontEnd
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Login}/{action=Index}/{id?}");
 
             await app.RunAsync();
         }

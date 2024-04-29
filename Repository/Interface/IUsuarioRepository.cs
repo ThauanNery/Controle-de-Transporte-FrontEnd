@@ -4,6 +4,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository.Interface
 {
     public interface IUsuarioRepository
     {
+        Task<UsuarioModel> BuscarPorLogin(string login);
         Task<UsuarioModel> GetByIdAsync(int id);
         Task<List<UsuarioModel>> GetAllAsync();
         Task<UsuarioModel> CreateAsync(UsuarioModel usuario);

@@ -17,6 +17,15 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         private string BaseUrl => _configuration.GetValue<string>("AppSettings:ApiBaseUrl");
 
+        public async Task<UsuarioModel> BuscarPorLogin(string login)
+        {
+            var response = await _httpClient.GetAsync($"{BaseUrl}/{RouteConst.BuscarPorLogin.Replace("{login}", login.ToString())}");
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadFromJsonAsync<UsuarioModel>();
+
+        }
+
         public async Task<UsuarioModel> GetByIdAsync(int id)
         {
             var response = await _httpClient.GetAsync($"{BaseUrl}/{RouteConst.UsuarioGetById.Replace("{id}", id.ToString())}");
