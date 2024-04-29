@@ -29,6 +29,13 @@
         public const string InstituicaoGetById = "Instituicao/GetById/{id}";
         public const string InstituicaoCreate = "Instituicao/Create";
         public const string InstituicaoUpdate = "Instituicao/Update/{id}";
-        public const string InstituicaoDelete = "Instituicao/Delete/{id}";
+        public const string InstituicaoDelete = "Instituicao/Delete/{id}"; 
+        
+        /*Usuarios*/
+        public const string UsuarioGetAll = "Usuario/GetAll";
+        public const string UsuarioGetById = "Usuario/GetById/{id}";
+        public const string UsuarioCreate = "Usuario/Create/{funcionarioId}";
+        public const string UsuarioUpdate = "Usuario/Update/{id}";
+        public const string UsuarioDelete = "Usuario/Delete/{id}";
     }
 }

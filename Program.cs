@@ -43,7 +43,9 @@ namespace Controle_de_Transporte_FrontEnd
             builder.Services.AddTransient<IFuncionariosRepository, FuncionariosRepository>();
             builder.Services.AddTransient<IFuncionariosService, FuncionariosService>();
             builder.Services.AddTransient<IInstituicaoRepository, InstituicaoRepository>();
-            builder.Services.AddTransient<IInstituicaoService, InstituicaoService>();
+            builder.Services.AddTransient<IInstituicaoService, InstituicaoService>(); 
+            builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 
             var app = builder.Build();
 

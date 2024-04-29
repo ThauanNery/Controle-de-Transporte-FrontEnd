@@ -1,0 +1,35 @@
+﻿@model UsuarioModel
+@{
+    ViewData["Title"] = "Adicionar Usuario";
+}
+<div class="">
+
+    <h1 class="display-4">Cadastrar Usuario</h1>
+
+    <form asp-controller="Usuario" asp-action="Create" method="post">
+
+        <div class="container form-group">
+            <div class="row">
+                <div class="col-sm">
+                    <label for="nome">Nome</label>
+                    <input for="uppercase" type="text" asp-for="Login" class="form-control">
+                    @Html.ValidationMessageFor(x => x.Login)
+                </div> 
+                <div class="col-sm">
+                    <label for="senha">Senha</label>
+                    <input for="uppercase" type="password" asp-for="Senha" class="form-control">
+                    @Html.ValidationMessageFor(x => x.Senha)
+                </div>
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.FuncionarioId, "Funcionarios", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.FuncionarioId, ViewBag.Funcionarios as SelectList, "Selecione...", new { @class = "form-control" })
+                </div>
+
+            </div>
+
+            <br />
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <a class="btn btn-secondary" asp-controller="Usuario" asp-action="Index" role="button"> Voltar</a>
+    </form>
+
+</div>
