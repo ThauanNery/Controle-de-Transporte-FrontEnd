@@ -58,11 +58,13 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                 try
                 {
                     var retorno = await _service.AddAsync(transporte);
+                    TempData["MensagemSucesso"] = "Tipo de Transporte cadastrado com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao cadastrado o Tipo de Transporte!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(transporte);
@@ -99,11 +101,13 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                 try
                 {
                     await _service.UpdateAsync(transporte);
+                    TempData["MensagemSucesso"] = "Tipo de Transporte atualizar com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao atualizar o Tipo de Transporte!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(transporte);
@@ -113,12 +117,21 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
         {
             try
             {
-                await _service.DeleteAsync(id);
+               bool tpTransporte = await _service.DeleteAsync(id);
+                if (tpTransporte)
+                {
+                    TempData["MensagemSucesso"] = "Tipo de Transporte excluir com sucesso!";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Erro ao excluir o Tipo de Transporte!";
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                TempData["MensagemErro"] = "Erro ao excluir o Tipo de Transporte!";
+                return RedirectToAction(nameof(Index));
             }
         }
     }

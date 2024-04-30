@@ -73,6 +73,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                         usuario.Funcionarios = funcionario;
 
                         var retorno = await _service.AddAsync(usuario);
+                        TempData["MensagemSucesso"] = "Usuario cadastrado com sucesso!";
                         return RedirectToAction(nameof(Index));
                     }
                     else
@@ -82,7 +83,8 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao cadastrado o Usuario!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(usuario);
@@ -126,11 +128,13 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                 try
                 {
                     await _service.UpdateAsync(usuario);
+                    TempData["MensagemSucesso"] = "Usuario atualizar com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao atualizar o Usuario!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(usuario);
@@ -140,12 +144,21 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
         {
             try
             {
-                await _service.DeleteAsync(id);
+               bool usuario = await _service.DeleteAsync(id);
+                if (usuario)
+                {
+                    TempData["MensagemSucesso"] = "Usuario excluir com sucesso!";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Erro ao excluir o Usuario!";
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                TempData["MensagemErro"] = "Erro ao excluir o Usuario!";
+                return RedirectToAction(nameof(Index));
             }
         }
 

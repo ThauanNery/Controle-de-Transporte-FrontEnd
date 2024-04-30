@@ -32,9 +32,9 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                         {
                             return RedirectToAction("Index", "Home");
                         }
-                        TempData["MessagemErro"] = $"Senha inválido!";
                     }
-                    TempData["MessagemErro"] = $"Usuário e/ou Senha inválido!";
+
+                    TempData["MensagemErro"] = $"Usuário e/ou Senha inválido!";
                 }
                 return View("Index");
             }

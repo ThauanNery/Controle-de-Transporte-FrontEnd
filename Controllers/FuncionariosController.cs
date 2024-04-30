@@ -74,19 +74,28 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                     CargoModel cargo = await ObterCargoPorId(cargoId);
                     int departamentoId = funcionario.DepartamentoId;
                     DepartamentoModel departamento = await ObterDepartamentoPorId(departamentoId);
-
+                    if(cargo != null && departamento != null) 
+                    {
 
                         funcionario.Cargo = cargo;
                         funcionario.Departamento = departamento;
 
                         var retorno = await _service.AddAsync(funcionario);
+                        TempData["MensagemSucesso"] = "Funcionario cadastrado com sucesso!";
                         return RedirectToAction(nameof(Index));
-                   
-                    
+
+                    }
+                    else
+                    {
+                        return NotFound("Departamento e/ou Cargo não encontrada");
+                    }
+
+
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao cadastrado o Funcionario!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(funcionario);
@@ -132,11 +141,13 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                 try
                 {
                     await _service.UpdateAsync(funcionarios);
+                    TempData["MensagemSucesso"] = "Funcionario atualizar com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao atualizar o Funcionario!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(funcionarios);
@@ -146,12 +157,21 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
         {
             try
             {
-                await _service.DeleteAsync(id);
+              bool funcionario = await _service.DeleteAsync(id);
+                if (funcionario)
+                {
+                    TempData["MensagemSucesso"] = "Funcionario excluir com sucesso!";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Erro ao excluir o Funcionario!";
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                TempData["MensagemErro"] = "Erro ao excluir o Funcionario!";
+                return RedirectToAction("Index");
             }
         }
 

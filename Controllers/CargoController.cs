@@ -57,11 +57,13 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                 try
                 {
                     var retorno = await _cargoService.AddAsync(cargo);
+                    TempData["MensagemSucesso"] = "Cargo cadastrado com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao cadastrar o Cargo!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(cargo);
@@ -98,11 +100,13 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                 try
                 {
                     await _cargoService.UpdateAsync(cargo);
+                    TempData["MensagemSucesso"] = "Cargo atualizar com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao atualizar o Cargo!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(cargo);
@@ -112,12 +116,21 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
         {
             try
             {
-                await _cargoService.DeleteAsync(id);
+               bool cargo =  await _cargoService.DeleteAsync(id);
+                if (cargo)
+                {
+                    TempData["MensagemSucesso"] = "Cargo excluir com sucesso!";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Erro ao excluir o Cargo!";
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                TempData["MensagemErro"] = "Erro ao excluir o Cargo!";
+                return RedirectToAction("Index");
             }
         }
     }

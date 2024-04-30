@@ -73,6 +73,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                         departamento.Instituicao = instituicao;
                         
                         var retorno = await _service.AddAsync(departamento);
+                        TempData["MensagemSucesso"] = "Departamento cadastrado com sucesso!";
                         return RedirectToAction(nameof(Index));
                     }
                     else
@@ -83,7 +84,8 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao cadastrar o Departamento!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(departamento);
@@ -127,11 +129,13 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                 try
                 {
                     await _service.UpdateAsync(departamento);
+                    TempData["MensagemSucesso"] = "Departamento atualizar com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao atualizar o Departamento!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(departamento);
@@ -141,12 +145,21 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
         {
             try
             {
-                await _service.DeleteAsync(id);
+              bool departamento = await _service.DeleteAsync(id);
+                if (departamento)
+                {
+                    TempData["MensagemSucesso"] = "Departamento excluir com sucesso!";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Erro ao excluir o Departamento!";
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                TempData["MensagemErro"] = "Erro ao excluir o Departamento!";
+                return RedirectToAction(nameof(Index));
             }
         }
 

@@ -57,11 +57,13 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                 try
                 {
                     var retorno = await _service.AddAsync(instituicao);
+                    TempData["MensagemSucesso"] = "Instituicao cadastrado com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao cadastrado o Instituicao!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(instituicao);
@@ -98,11 +100,13 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                 try
                 {
                     await _service.UpdateAsync(instituicao);
+                    TempData["MensagemSucesso"] = "Instituicao atualizar com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                    TempData["MensagemErro"] = "Erro ao atualizar o Instituicao!";
+                    return RedirectToAction("Index");
                 }
             }
             return View(instituicao);
@@ -112,12 +116,21 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
         {
             try
             {
-                await _service.DeleteAsync(id);
+               bool instituicao =  await _service.DeleteAsync(id);
+                if (instituicao)
+                {
+                    TempData["MensagemSucesso"] = "Funcionario excluir com sucesso!";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Erro ao excluir o Funcionario!";
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, new { Erro = ex.Message });
+                TempData["MensagemErro"] = "Erro ao excluir o Funcionario!";
+                return RedirectToAction(nameof(Index));
             }
         }
     }
