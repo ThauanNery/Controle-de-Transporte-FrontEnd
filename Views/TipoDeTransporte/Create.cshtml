@@ -1,0 +1,21 @@
+﻿@model TipoDeTransporteModel
+@{
+    ViewData["Title"] = "Adicionar Tipo de Transporte ";
+}
+<div class="">
+
+    <h1 class="display-4">Cadastrar Tipo de Transporte</h1>
+
+    <form asp-controller="TipoDeTransporte" asp-action="Create" method="post">
+
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input for="uppercase" type="text" asp-for="NomeTransporte" class="form-control">
+            @Html.ValidationMessageFor(x => x.NomeTransporte)
+
+            <br />
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <a class="btn btn-secondary" asp-controller="TipoDeTransporte" asp-action="Index" role="button"> Voltar</a>
+    </form>
+
+</div>

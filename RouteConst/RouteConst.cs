@@ -29,8 +29,15 @@
         public const string InstituicaoGetById = "Instituicao/GetById/{id}";
         public const string InstituicaoCreate = "Instituicao/Create";
         public const string InstituicaoUpdate = "Instituicao/Update/{id}";
-        public const string InstituicaoDelete = "Instituicao/Delete/{id}"; 
-        
+        public const string InstituicaoDelete = "Instituicao/Delete/{id}";
+
+        /*Tipo de Transporte*/
+        public const string TipoDeTransporteGetAll = "TipoDeTransporte/GetAll";
+        public const string TipoDeTransporteGetById = "TipoDeTransporte/GetById/{id}";
+        public const string TipoDeTransporteCreate = "TipoDeTransporte/Create";
+        public const string TipoDeTransporteUpdate = "TipoDeTransporte/Update/{id}";
+        public const string TipoDeTransporteDelete = "TipoDeTransporte/Delete/{id}";
+
         /*Usuarios*/
         public const string BuscarPorLogin = "Usuario/BuscarPorLogin/{login}";
         public const string UsuarioGetAll = "Usuario/GetAll";
