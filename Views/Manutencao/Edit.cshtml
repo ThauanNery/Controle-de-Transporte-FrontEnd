@@ -1,0 +1,44 @@
+﻿@model ManutencaoModel
+@{
+    ViewData["Title"] = "Editar Tipo de Manutenção";
+}
+<div class="">
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            A simple danger alert—check it out!
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+    <h1 class="display-4">Editar Tipo de Manutenção</h1>
+
+    <form asp-controller="Manutencao" asp-action="Edit" method="post">
+
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" asp-for="TipoManutencao" class="form-control">
+            @Html.ValidationMessageFor(x => x.TipoManutencao)
+        </div>
+        <div class="form-group">
+            <label for="valor">Valor</label>
+            <input type="text" asp-for="Custo" class="form-control">
+            @Html.ValidationMessageFor(x => x.Custo)
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-primary">Alterar</button>
+        <a class="btn btn-secondary" asp-controller="Manutencao" asp-action="Index" role="button"> Voltar</a>
+    </form>
+
+</div>
