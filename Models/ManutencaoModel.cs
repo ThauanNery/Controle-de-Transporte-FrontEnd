@@ -9,10 +9,10 @@ namespace Controle_de_Transporte_FrontEnd.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Digite um Tipo Manutenção")]
         public string TipoManutencao { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Digite um Valor")]
         public string Custo { get; set; }
     }
 }

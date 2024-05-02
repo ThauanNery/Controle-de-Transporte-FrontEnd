@@ -30,6 +30,13 @@
         public const string InstituicaoCreate = "Instituicao/Create";
         public const string InstituicaoUpdate = "Instituicao/Update/{id}";
         public const string InstituicaoDelete = "Instituicao/Delete/{id}";
+        
+        /*Manutenção*/
+        public const string ManutencaoGetAll = "Manutencao/GetAll";
+        public const string ManutencaoGetById = "Manutencao/GetById/{id}";
+        public const string ManutencaoCreate = "Manutencao/Create";
+        public const string ManutencaoUpdate = "Manutencao/Update/{id}";
+        public const string ManutencaoDelete = "Manutencao/Delete/{id}";
 
         /*Tipo de Transporte*/
         public const string TipoDeTransporteGetAll = "TipoDeTransporte/GetAll";
