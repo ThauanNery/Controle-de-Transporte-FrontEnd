@@ -38,6 +38,13 @@
         public const string ManutencaoUpdate = "Manutencao/Update/{id}";
         public const string ManutencaoDelete = "Manutencao/Delete/{id}";
 
+        /*Matricula Transporte*/
+        public const string MatriculaTransporteGetAll = "MatriculaTransporte/GetAll";
+        public const string MatriculaTransporteGetById = "MatriculaTransporte/GetById/{id}";
+        public const string MatriculaTransporteCreate = "MatriculaTransporte/Create";
+        public const string MatriculaTransporteUpdate = "MatriculaTransporte/Update/{id}";
+        public const string MatriculaTransporteDelete = "MatriculaTransporte/Delete/{id}";
+
         /*Tipo de Transporte*/
         public const string TipoDeTransporteGetAll = "TipoDeTransporte/GetAll";
         public const string TipoDeTransporteGetById = "TipoDeTransporte/GetById/{id}";
