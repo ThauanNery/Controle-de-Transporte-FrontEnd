@@ -52,6 +52,13 @@
         public const string TipoDeTransporteUpdate = "TipoDeTransporte/Update/{id}";
         public const string TipoDeTransporteDelete = "TipoDeTransporte/Delete/{id}";
 
+        /*Transporte*/
+        public const string TransporteGetAll = "Transporte/GetAll";
+        public const string TransporteGetById = "Transporte/GetById/{id}";
+        public const string TransporteCreate = "Transporte/Create/{tipoTransporteId},{funcionarioId},{matriculaTransporteId}";
+        public const string TransporteUpdate = "Transporte/Update/{id}";
+        public const string TransporteDelete = "Transporte/Delete/{id}";
+
         /*Usuarios*/
         public const string BuscarPorLogin = "Usuario/BuscarPorLogin/{login}";
         public const string UsuarioGetAll = "Usuario/GetAll";

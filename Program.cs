@@ -50,6 +50,8 @@ namespace Controle_de_Transporte_FrontEnd
             builder.Services.AddTransient<IMatriculaTransporteService, MatriculaTransporteService>();  
             builder.Services.AddTransient<ITipodeTransporteRepository, TipodeTransporteRepository>();
             builder.Services.AddTransient<ITipodeTransporteService, TipodeTransporteService>(); 
+            builder.Services.AddTransient<ITransporteRepository,TransporteRepository>();
+            builder.Services.AddTransient<ITransporteService, TransporteService>(); 
             builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 

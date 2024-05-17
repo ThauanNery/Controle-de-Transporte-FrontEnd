@@ -30,7 +30,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                     {
                         if (usuario.SenhaValida(model.Senha))
                         {
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Transporte");
                         }
                     }
 
