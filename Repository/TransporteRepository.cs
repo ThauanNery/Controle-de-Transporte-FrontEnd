@@ -35,7 +35,7 @@ namespace Controle_de_Transporte_FrontEnd.Repository
 
         public async Task<TransporteModel> CreateAsync(TransporteModel transporte)
         {
-            var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}/{RouteConst.TransporteCreate.Replace("{tipoTransporteId}", transporte.TipoDeTransporte.Id.ToString()).Replace("{funcionarioId}", transporte.Funcionario.Id.ToString()).Replace("{matriculaTransporteId}", transporte.MatriculaTransporte.Id.ToString())}", transporte);
+            var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}/{RouteConst.TransporteCreate.Replace("{tipoTransporteId}", transporte.TipoTransportes.Id.ToString()).Replace("{funcionarioId}", transporte.Funcionario.Id.ToString()).Replace("{matriculaTransporteId}", transporte.MatriculaTransporte.Id.ToString())}", transporte);
             response.EnsureSuccessStatusCode();
 
             return await response.Content.ReadFromJsonAsync<TransporteModel>();

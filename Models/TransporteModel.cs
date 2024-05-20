@@ -17,7 +17,7 @@ namespace Controle_de_Transporte_FrontEnd.Models
         public DateTime? DataFim { get; set; }
 
        
-        public virtual TipoDeTransporteModel? TipoDeTransporte { get; set; }
+        public virtual TipoDeTransporteModel? TipoTransportes { get; set; }
        
         public virtual FuncionariosModel? Funcionario { get; set; }
        

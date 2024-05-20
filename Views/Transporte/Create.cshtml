@@ -1,0 +1,49 @@
+﻿@model TransporteModel
+@{
+    ViewData["Title"] = "Adicionar Transporte";
+}
+<div class="">
+
+    <h1 class="display-4">Cadastrar Transporte</h1>
+
+    <form asp-controller="Transporte" asp-action="Create" method="post">
+
+        <div class="container form-group">
+            <div class="row">               
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.FuncionarioId, "Funcionarios", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.FuncionarioId, ViewBag.Funcionarios as SelectList, "Selecione...", new { @class = "form-control" })
+                </div>
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.MatriculaTransporteId, "Matricula do Trnasporte", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.MatriculaTransporteId, ViewBag.Matriculas as SelectList, "Selecione...", new { @class = "form-control" })
+                </div> 
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.TipoTransporteId, "Tipo de Transporte", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.TipoTransporteId, ViewBag.TiposTransporte as SelectList, "Selecione...", new { @class = "form-control" })
+                </div>
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.ManutencaoId, "Tipo de Manutenção", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.ManutencaoId, ViewBag.Matriculas as SelectList, "Selecione...", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <label for="data">Data Inicial</label>
+                    <input for="uppercase" type="date" asp-for="DataInicio" class="form-control">
+                    @Html.ValidationMessageFor(x => x.DataInicio)
+                </div>
+                <div class="col-sm">
+                    <label for="data">Data Devolução</label>
+                    <input for="uppercase" type="date" asp-for="DataFim" class="form-control">
+                    @Html.ValidationMessageFor(x => x.DataFim)
+                </div>
+            </div>
+        </div>
+
+            <br />
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <a class="btn btn-secondary" asp-controller="Transporte" asp-action="Index" role="button"> Voltar</a>
+    </form>
+
+</div>

@@ -13,8 +13,8 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
         private readonly IFuncionariosService _funcService;
         private readonly ITipodeTransporteService _tpService;
         private readonly IMatriculaTransporteService _matService;
-        private readonly IManutencaoService _manuService;
-        public TransporteController(ITransporteService service, IFuncionariosService funcService, ITipodeTransporteService tpService, IMatriculaTransporteService matService, IManutencaoService manuService)
+        private readonly IManutencaoService? _manuService;
+        public TransporteController(ITransporteService service, IFuncionariosService funcService, ITipodeTransporteService tpService, IMatriculaTransporteService matService, IManutencaoService? manuService)
         {
             _service = service;
             _funcService = funcService;
@@ -87,14 +87,19 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                     int tpTranspId = transporte.TipoTransporteId;
                     TipoDeTransporteModel tpTransp = await ObterTipoTransportePorId(tpTranspId);
                     int? manuId = transporte.ManutencaoId;
-                    ManutencaoModel? manu = await ObterManutencaoPorId((int)manuId);
+                    ManutencaoModel? manu = null;
+
+                    if (manuId.HasValue)
+                    {
+                        manu = await ObterManutencaoPorId(manuId.Value);
+                    }
 
                     if (funcionario != null && matTransp != null && tpTransp != null)
                     {
 
                         transporte.Funcionario = funcionario;
                         transporte.MatriculaTransporte = matTransp;
-                        transporte.TipoDeTransporte = tpTransp;
+                        transporte.TipoTransportes = tpTransp;
                         transporte.Manutencao = manu;
                         transporte.DataInicio.ToShortDateString();
                         transporte.DataFim.GetValueOrDefault().ToShortDateString();
