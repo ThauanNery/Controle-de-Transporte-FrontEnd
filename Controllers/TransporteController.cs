@@ -13,8 +13,8 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
         private readonly IFuncionariosService _funcService;
         private readonly ITipodeTransporteService _tpService;
         private readonly IMatriculaTransporteService _matService;
-        private readonly IManutencaoService? _manuService;
-        public TransporteController(ITransporteService service, IFuncionariosService funcService, ITipodeTransporteService tpService, IMatriculaTransporteService matService, IManutencaoService? manuService)
+        private readonly IManutencaoService _manuService;
+        public TransporteController(ITransporteService service, IFuncionariosService funcService, ITipodeTransporteService tpService, IMatriculaTransporteService matService, IManutencaoService manuService)
         {
             _service = service;
             _funcService = funcService;
@@ -89,10 +89,12 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
                     int? manuId = transporte.ManutencaoId;
                     ManutencaoModel? manu = null;
 
-                    if (manuId.HasValue)
+                    // Se manuId não for null, chamamos ObterManutencaoPorId
+                    if (manuId != null)
                     {
                         manu = await ObterManutencaoPorId(manuId.Value);
                     }
+
 
                     if (funcionario != null && matTransp != null && tpTransp != null)
                     {

@@ -1,1 +1,70 @@
-﻿
+﻿@model TransporteModel
+@{
+    ViewData["Title"] = "Editar Transporte";
+}
+<div class="">
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            A simple danger alert—check it out!
+            <button type="button" class="btn btn-danger  btn-close" arial-label="close"></button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+    <h1 class="display-4">Editar Transporte</h1>
+
+    <form asp-controller="Transporte" asp-action="Edit" method="post">
+
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="FuncionarioId" />
+        <input type="hidden" asp-for="MatriculaTransporteId" />
+        <input type="hidden" asp-for="TipoTransporteId" />
+        <input type="hidden" asp-for="ManutencaoId" />
+
+        <div class="container form-group">
+            <div class="row">              
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.FuncionarioId, "Funcionario", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.FuncionarioId, ViewBag.Funcionarios as SelectList, "", new { @class = "form-control" })
+                </div>
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.MatriculaTransporteId, "Matricula do Transporte", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.MatriculaTransporteId, ViewBag.Matriculas as SelectList, "", new { @class = "form-control" })
+                </div> 
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.TipoTransporteId, "Tipo de Transporte", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.TipoTransporteId, ViewBag.TiposTransporte as SelectList, "", new { @class = "form-control" })
+                </div>
+                <div class="col-sm">
+                    @Html.LabelFor(model => model.ManutencaoId, "Tipo de Manutenção", new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.ManutencaoId, ViewBag.Manutencoes as SelectList, "", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <label for="data">Data Inicial</label>
+                    <input for="uppercase" type="date" asp-for="DataInicio" class="form-control">
+                    @Html.ValidationMessageFor(x => x.DataInicio)
+                </div>
+                <div class="col-sm">
+                    <label for="data">Data Devolução</label>
+                    <input for="uppercase" type="date" asp-for="DataFim" class="form-control">
+                    @Html.ValidationMessageFor(x => x.DataFim)
+                </div>
+            </div>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Alterar</button>
+        <a class="btn btn-secondary" asp-controller="Transporte" asp-action="Index" role="button"> Voltar</a>
+    </form>
+
+</div>
