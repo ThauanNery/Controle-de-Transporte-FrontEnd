@@ -174,7 +174,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
             }
         }
 
-
+        #region
         private async Task<List<TipoDeTransporteModel>> ObterTiposTransporte()
         {
             var tps = new List<TipoDeTransporteModel>();
@@ -191,17 +191,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
 
             return tp;
         }
-        private async Task<TipoDeTransporteModel> ObterTipoTransportePorId(int id)
-        {
-            if (id <= 0)
-            {
-                throw new ArgumentException("ID inválido.");
-            }
-
-            var tp = await _tpService.GetByIdAsync(id);
-
-            return tp;
-        }
+        
         private async Task<List<FuncionariosModel>> ObterFuncionarios()
         {
             var funcs = new List<FuncionariosModel>();
@@ -218,17 +208,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
 
             return func;
         }
-        private async Task<FuncionariosModel> ObterFuncionarioPorId(int id)
-        {
-            if (id <= 0)
-            {
-                throw new ArgumentException("ID inválido.");
-            }
-
-            var func = await _funcService.GetByIdAsync(id);
-
-            return func;
-        }
+        
         private async Task<List<MatriculaTransporteModel>> ObterMatriculasTransporte()
         {
             var mats = new List<MatriculaTransporteModel>();
@@ -245,17 +225,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
 
             return mat;
         }
-        private async Task<MatriculaTransporteModel> ObterMatriculaTransportePorId(int id)
-        {
-            if (id <= 0)
-            {
-                throw new ArgumentException("ID inválido.");
-            }
-
-            var mat = await _matService.GetByIdAsync(id);
-
-            return mat;
-        }
+       
         private async Task<List<ManutencaoModel>> ObterManutencaos()
         {
             var manus = new List<ManutencaoModel>();
@@ -272,17 +242,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
 
             return manu;
         }
-        private async Task<ManutencaoModel> ObterManutencaoPorId(int id)
-        {
-            if (id <= 0)
-            {
-                throw new ArgumentException("ID inválido.");
-            }
-
-            var manu = await _manuService.GetByIdAsync(id);
-
-            return manu;
-        }
+        #endregion
     }
 }
 

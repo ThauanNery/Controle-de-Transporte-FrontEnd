@@ -91,24 +91,12 @@ namespace Controle_de_Transporte_FrontEnd.Service
                 throw new Exception(errorMessage, ex);
             }
         }
-        // public async Task<TransporteModel> AddAsync(TransporteModel transporte)
-        //{
-        //    try
-        //    {
-        //        await _repository.CreateAsync(transporte);
-        //        return transporte;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        string errorMessage = "Ocorreu um erro ao adicionar um transporte.";
-        //        throw new Exception(errorMessage, ex);
-        //    }
-        //}
-
+       
         public async Task<TransporteModel> UpdateAsync(TransporteModel transporte)
         {
             try
             {
+
                 await _repository.UpdateAsync(transporte);
                 return transporte;
             }
@@ -133,22 +121,8 @@ namespace Controle_de_Transporte_FrontEnd.Service
             }
         }
 
-        private async Task<List<TipoDeTransporteModel>> ObterTiposTransporte()
-        {
-            var tps = new List<TipoDeTransporteModel>();
 
-
-            var tp = await _tpService.GetAllAsync();
-
-
-            if (tps != null)
-            {
-
-                tp.AddRange(tps);
-            }
-
-            return tp;
-        }
+        #region 
         private async Task<TipoDeTransporteModel> ObterTipoTransportePorId(int id)
         {
             if (id <= 0)
@@ -160,22 +134,7 @@ namespace Controle_de_Transporte_FrontEnd.Service
 
             return tp;
         }
-        private async Task<List<FuncionariosModel>> ObterFuncionarios()
-        {
-            var funcs = new List<FuncionariosModel>();
 
-
-            var func = await _funcService.GetAllAsync();
-
-
-            if (funcs != null)
-            {
-
-                func.AddRange(funcs);
-            }
-
-            return func;
-        }
         private async Task<FuncionariosModel> ObterFuncionarioPorId(int id)
         {
             if (id <= 0)
@@ -187,22 +146,7 @@ namespace Controle_de_Transporte_FrontEnd.Service
 
             return func;
         }
-        private async Task<List<MatriculaTransporteModel>> ObterMatriculasTransporte()
-        {
-            var mats = new List<MatriculaTransporteModel>();
-
-
-            var mat = await _matService.GetAllAsync();
-
-
-            if (mats != null)
-            {
-
-                mat.AddRange(mats);
-            }
-
-            return mat;
-        }
+        
         private async Task<MatriculaTransporteModel> ObterMatriculaTransportePorId(int id)
         {
             if (id <= 0)
@@ -214,22 +158,7 @@ namespace Controle_de_Transporte_FrontEnd.Service
 
             return mat;
         }
-        private async Task<List<ManutencaoModel>> ObterManutencaos()
-        {
-            var manus = new List<ManutencaoModel>();
-
-
-            var manu = await _manuService.GetAllAsync();
-
-
-            if (manus != null)
-            {
-
-                manu.AddRange(manus);
-            }
-
-            return manu;
-        }
+       
         private async Task<ManutencaoModel> ObterManutencaoPorId(int id)
         {
             if (id <= 0)
@@ -241,5 +170,6 @@ namespace Controle_de_Transporte_FrontEnd.Service
 
             return manu;
         }
+        #endregion
     }
 }
