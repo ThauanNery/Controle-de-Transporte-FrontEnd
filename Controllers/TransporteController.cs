@@ -79,43 +79,9 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
             {
                 try
                 {
-
-                    int funcionarioId = transporte.FuncionarioId;
-                    FuncionariosModel funcionario = await ObterFuncionarioPorId(funcionarioId);
-                    int matTranspId = transporte.MatriculaTransporteId;
-                    MatriculaTransporteModel matTransp = await ObterMatriculaTransportePorId(matTranspId);
-                    int tpTranspId = transporte.TipoTransporteId;
-                    TipoDeTransporteModel tpTransp = await ObterTipoTransportePorId(tpTranspId);
-                    int? manuId = transporte.ManutencaoId;
-                    ManutencaoModel? manu = null;
-
-                    // Se manuId não for null, chamamos ObterManutencaoPorId
-                    if (manuId != null)
-                    {
-                        manu = await ObterManutencaoPorId(manuId.Value);
-                    }
-
-
-                    if (funcionario != null && matTransp != null && tpTransp != null)
-                    {
-
-                        transporte.Funcionario = funcionario;
-                        transporte.MatriculaTransporte = matTransp;
-                        transporte.TipoTransportes = tpTransp;
-                        transporte.Manutencao = manu;
-                        transporte.DataInicio.ToShortDateString();
-                        transporte.DataFim.GetValueOrDefault().ToShortDateString();
-
                         var retorno = await _service.AddAsync(transporte);
                         TempData["MensagemSucesso"] = "Transporte cadastrado com sucesso!";
                         return RedirectToAction(nameof(Index));
-
-                    }
-                    else
-                    {
-                        return NotFound("Funcionario, MatriculaTransporte e/ou TipoDeTransporte não encontrada");
-                    }
-
 
                 }
                 catch (Exception ex)
