@@ -48,8 +48,8 @@
             </div>
             <div class="row">
                 <div class="col-sm">
-                    <label for="data">Data Inicial</label>
-                    <input for="uppercase" type="date" asp-for="DataInicio" class="form-control">
+                    <label for="data">Data Aquisição</label>
+                    <input for="uppercase" type="date" asp-for="DataInicio" class="form-control" readonly>
                     @Html.ValidationMessageFor(x => x.DataInicio)
                 </div>
                 <div class="col-sm">

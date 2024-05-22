@@ -37,7 +37,7 @@
                 <th class="text-center" scope="col">Matricula do Transporte</th>
                 <th class="text-center" scope="col">Tipo de Transporte</th>
                 <th class="text-center" scope="col">Tipo de Manutenção</th>
-                <th class="text-center" scope="col">Data Inicial</th>
+                <th class="text-center" scope="col">Data Aquisição</th>
                 <th class="text-center" scope="col">Data Devolução</th>
                 <th class="text-center" scope="col">Ações</th>
             </tr>
@@ -59,7 +59,7 @@
                         <td class="text-center">@transporte.TipoTransportes.NomeTransporte</td>
                         <td class="text-center">@((transporte.Manutencao != null) ? transporte.Manutencao.TipoManutencao : "")</td>
                         <td class="text-center">@transporte.DataInicio.ToShortDateString() </td>
-                        <td class="text-center">@((transporte.DataFim != null) ? transporte.DataFim.ToString() : "")</td>
+                        <td class="text-center">@((transporte.DataFim != null) ? transporte.DataFim.GetValueOrDefault().ToShortDateString() : "")</td>
 
                         <td>
                             <div class="btn-group" role="group">
