@@ -8,10 +8,14 @@ namespace Controle_de_Transporte_FrontEnd.Service
     public class FuncionariosService : IFuncionariosService
     {
         private readonly IFuncionariosRepository _repository;
+        private readonly ICargoRepository _cargoRepository;
+        private readonly IDepartamentoRepository _departyamentoRepository;
 
-        public FuncionariosService(IFuncionariosRepository repository)
+        public FuncionariosService(IFuncionariosRepository repository, ICargoRepository cargoRepository, IDepartamentoRepository departyamentoRepository)
         {
             _repository = repository;
+            _cargoRepository = cargoRepository;
+            _departyamentoRepository = departyamentoRepository;
         }
 
         public async Task<FuncionariosModel> GetByIdAsync(int id)
@@ -46,12 +50,23 @@ namespace Controle_de_Transporte_FrontEnd.Service
             }
         }
 
-        public async Task<FuncionariosModel> AddAsync(FuncionariosModel funcionarios)
+        public async Task<FuncionariosModel> AddAsync(FuncionariosModel funcionario)
         {
             try
             {
-                await _repository.CreateAsync(funcionarios);
-                return funcionarios;
+                int cargoId = funcionario.CargoId;
+                CargoModel cargo = await ObterCargoPorId(cargoId);
+                int departamentoId = funcionario.DepartamentoId;
+                DepartamentoModel departamento = await ObterDepartamentoPorId(departamentoId);
+                if (cargo != null && departamento != null)
+                {
+
+                    funcionario.Cargo = cargo;
+                    funcionario.Departamento = departamento;
+
+                    await _repository.CreateAsync(funcionario);
+                }
+                return funcionario;
             }
             catch (Exception ex)
             {
@@ -87,5 +102,29 @@ namespace Controle_de_Transporte_FrontEnd.Service
                 throw new Exception(errorMessage, ex);
             }
         }
+
+        private async Task<CargoModel> ObterCargoPorId(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentException("ID inválido.");
+            }
+
+            var cargo = await _cargoRepository.GetByIdAsync(id);
+
+            return cargo;
+        }
+        private async Task<DepartamentoModel> ObterDepartamentoPorId(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentException("ID inválido.");
+            }
+
+            var departamento = await _departyamentoRepository.GetByIdAsync(id);
+
+            return departamento;
+        }
+
     }
 }

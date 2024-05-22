@@ -69,27 +69,9 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
             {
                 try
                 {
-
-                    int cargoId = funcionario.CargoId;
-                    CargoModel cargo = await ObterCargoPorId(cargoId);
-                    int departamentoId = funcionario.DepartamentoId;
-                    DepartamentoModel departamento = await ObterDepartamentoPorId(departamentoId);
-                    if(cargo != null && departamento != null) 
-                    {
-
-                        funcionario.Cargo = cargo;
-                        funcionario.Departamento = departamento;
-
-                        var retorno = await _service.AddAsync(funcionario);
+                      var retorno = await _service.AddAsync(funcionario);
                         TempData["MensagemSucesso"] = "Funcionario cadastrado com sucesso!";
                         return RedirectToAction(nameof(Index));
-
-                    }
-                    else
-                    {
-                        return NotFound("Departamento e/ou Cargo não encontrada");
-                    }
-
 
                 }
                 catch (Exception ex)
@@ -100,9 +82,6 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
             }
             return View(funcionario);
         }
-
-
-
 
         public async Task<IActionResult> Edit(int id)
         {
@@ -175,7 +154,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
             }
         }
 
-
+        #region
         private async Task<List<CargoModel>> ObterCargos()
         {
             var cargo = new List<CargoModel>();
@@ -192,18 +171,7 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
 
             return cargo;
         }
-        private async Task<CargoModel> ObterCargoPorId(int id)
-        {
-            if (id <= 0)
-            {
-                throw new ArgumentException("ID inválido.");
-            }
-
-            var cargo = await _cargoService.GetByIdAsync(id);
-
-            return cargo;
-        } 
-        
+       
         private async Task<List<DepartamentoModel>> ObterDepartamentos()
         {
             var departamento = new List<DepartamentoModel>();
@@ -220,17 +188,6 @@ namespace Controle_de_Transporte_FrontEnd.Controllers
 
             return departamento;
         }
-        private async Task<DepartamentoModel> ObterDepartamentoPorId(int id)
-        {
-            if (id <= 0)
-            {
-                throw new ArgumentException("ID inválido.");
-            }
-
-            var departamento = await _departService.GetByIdAsync(id);
-
-            return departamento;
-        }
-
+        #endregion
     }
 }
